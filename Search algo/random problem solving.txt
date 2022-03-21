@@ -1,0 +1,9 @@
+1)all even numbers: n=N/2 then n*(n+1)
+
+2)sort array: #include <bits/stdc++.h>
+		sort(arr, arr + n);
+
+3)reduce decimal: cout << setprecision(2) << value;
+
+4)to cin full line: string response;
+		    getline(cin, response);

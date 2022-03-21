@@ -1,0 +1,49 @@
+#include <iostream>
+#include <bits/stdc++.h>
+#include <map>
+using namespace std;
+class graph
+{
+    public:
+        map<char , list<char>> Map;
+        map<char , bool> visited;
+        list<char> Q;
+
+        void edge(char p , char c)
+        {
+            Map[p].push_back(c);
+        }
+        void BFS (char p)
+        {
+            if (!visited[p]){
+            visited[p]=true;
+            Q.push_back(p);
+            cout<<Q.front()<<" ";
+            if (p=='G') abort();
+            }
+            list<char>::iterator i;
+            for (i = Map[p].begin(); i != Map[p].end(); i++)
+                {
+                    Q.push_back(*i);
+                }
+                Q.pop_front();
+                BFS(Q.front());
+        }
+};
+int main()
+{
+    graph g;
+    g.edge('A' , 'B');
+    g.edge('A' , 'D');
+    g.edge('B' , 'E');
+    g.edge('D' , 'F');
+    g.edge('E' , 'G');
+    g.edge('E' , 'C');
+    g.edge('F' , 'C');
+    g.edge('F' , 'G');
+    g.edge('C' , 'G');
+    g.edge('C' , 'A');
+
+    g.BFS('A');
+    return 0;
+}

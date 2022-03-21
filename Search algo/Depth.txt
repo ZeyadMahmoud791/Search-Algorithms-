@@ -1,0 +1,39 @@
+{
+    public:
+        map<char , list<char>> Map;
+        map<char , bool> visited;
+
+        void edge(char p , char c)
+        {
+            Map[p].push_back(c);
+        }
+        void DFS (char p)
+        {
+            visited[p]=true;
+            cout<<p<<" ";
+            if (p=='G') abort();
+
+            list<char>::iterator i;
+            for (i = Map[p].begin(); i != Map[p].end(); i++)
+                {
+                    if (!visited[*i]) DFS(*i);
+                }
+        }
+};
+int main()
+{
+    graph g;
+    g.edge('A' , 'B');
+    g.edge('A' , 'D');
+    g.edge('B' , 'E');
+    g.edge('D' , 'F');
+    g.edge('E' , 'G');
+    g.edge('E' , 'C');
+    g.edge('F' , 'C');
+    g.edge('F' , 'G');
+    g.edge('C' , 'G');
+    g.edge('C' , 'A');
+
+    g.DFS('A');
+    return 0;
+}
